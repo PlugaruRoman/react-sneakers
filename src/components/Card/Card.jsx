@@ -1,18 +1,26 @@
 import styles from './Сard.module.scss';
 import React, { useState } from 'react';
 
-const Card = ({ img, title, price, onPlus }) => {
+const Card = ({
+  id,
+  img,
+  title,
+  price,
+  onPlus,
+  onFavorite,
+  favorited = true,
+}) => {
   const [isAdded, setIsAdded] = useState(true);
+  const [isLiked, setIsLiked] = useState(favorited);
 
   const addSneakers = () => {
     setIsAdded(!isAdded);
-    onPlus({ img, title, price });
+    onPlus({ id, img, title, price });
   };
-
-  const [isLiked, setIsLiked] = useState(true);
 
   const likeSneakers = () => {
     setIsLiked(!isLiked);
+    onFavorite({ id, img, title, price });
   };
 
   return (

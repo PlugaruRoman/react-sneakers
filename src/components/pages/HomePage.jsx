@@ -7,6 +7,7 @@ const HomePage = ({
   items,
   onFavorite,
   onAddToCart,
+  cartItems,
 }) => {
   return (
     <div className='container'>
@@ -30,6 +31,10 @@ const HomePage = ({
                 price={item.price}
                 img={item.img}
                 key={index}
+                favorited={false}
+                added={cartItems.some(
+                  (obj) => Number(obj.id) === Number(item.id)
+                )}
                 onFavorite={(obj) => {
                   onFavorite(obj);
                 }}

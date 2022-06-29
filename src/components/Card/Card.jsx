@@ -8,26 +8,27 @@ const Card = ({
   price,
   onPlus,
   onFavorite,
-  favorited = true,
+  added = false,
+  favorited = false,
 }) => {
-  const [isAdded, setIsAdded] = useState(true);
+  const [isAdded, setIsAdded] = useState(added);
   const [isLiked, setIsLiked] = useState(favorited);
 
   const addSneakers = () => {
-    setIsAdded(!isAdded);
     onPlus({ id, img, title, price });
+    setIsAdded(!isAdded);
   };
 
   const likeSneakers = () => {
-    setIsLiked(!isLiked);
     onFavorite({ id, img, title, price });
+    setIsLiked(!isLiked);
   };
 
   return (
     <div className={styles.containerContentCard}>
       <div onClick={likeSneakers} className={styles.favorite}>
         <img
-          src={isLiked ? '/img/unliked.svg' : '/img/liked.svg'}
+          src={isLiked ? '/img/liked.svg' : '/img/unliked.svg'}
           alt='unliked'
         />
       </div>
@@ -46,7 +47,7 @@ const Card = ({
         </div>
         <div className={styles.plusButton} onClick={addSneakers}>
           <img
-            src={isAdded ? './img/addsneakers.svg' : './img/checked.svg'}
+            src={isAdded ? './img/checked.svg' : './img/addsneakers.svg'}
             alt='addSneakers'
           />
         </div>

@@ -40,9 +40,22 @@ function App(props) {
     }
   };
 
-  const onAddToCart = (obj) => {
-    axios.post('https://62acc3c99fa81d00a7b936b6.mockapi.io/cart', obj);
-    setCartItems((prev) => [...prev, obj]);
+  const onAddToCart = async (obj) => {
+    try {
+      if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+        axios.delete(
+          `https://62acc3c99fa81d00a7b936b6.mockapi.io/cart/${obj.id}`
+        );
+        setCartItems((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(obj.id))
+        );
+      } else {
+        axios.post('https://62acc3c99fa81d00a7b936b6.mockapi.io/cart', obj);
+        setCartItems((prev) => [...prev, obj]);
+      }
+    } catch (error) {
+      alert('не удалось добавить в карзину');
+    }
   };
 
   const onRemoveItem = (id) => {
@@ -55,23 +68,25 @@ function App(props) {
   };
 
   React.useEffect(() => {
-    axios
-      .get('https://62acc3c99fa81d00a7b936b6.mockapi.io/items')
-      .then((res) => {
-        setItems(res.data);
-      });
+    async function fetchData() {
+      const cartResponse = await axios.get(
+        'https://62acc3c99fa81d00a7b936b6.mockapi.io/cart'
+      );
 
-    axios
-      .get('https://62acc3c99fa81d00a7b936b6.mockapi.io/cart')
-      .then((res) => {
-        setCartItems(res.data);
-      });
+      const favoritesResponse = await axios.get(
+        'https://62acc3c99fa81d00a7b936b6.mockapi.io/favorites'
+      );
 
-    axios
-      .get('https://62acc3c99fa81d00a7b936b6.mockapi.io/favorites')
-      .then((res) => {
-        setFavorites(res.data);
-      });
+      const itemsResponse = await axios.get(
+        'https://62acc3c99fa81d00a7b936b6.mockapi.io/items'
+      );
+
+      setCartItems(cartResponse.data);
+      setFavorites(favoritesResponse.data);
+      setItems(itemsResponse.data);
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -103,6 +118,7 @@ function App(props) {
               onChangeSearchInput={onChangeSearchInput}
               searchValue={searchValue}
               items={items}
+              cartItems={cartItems}
               onFavorite={onFavorite}
               onAddToCart={onAddToCart}
             />

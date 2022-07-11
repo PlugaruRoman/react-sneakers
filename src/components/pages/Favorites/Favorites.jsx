@@ -1,12 +1,15 @@
+import { useContext } from 'react';
 import Card from '../../Card/Card';
 import styles from './Favorites.module.scss';
+import appContext from '../../../context';
 
-const Favorites = ({ items = [], onFavorite, onAddToCart }) => {
+const Favorites = ({ onFavorite, onAddToCart }) => {
+  const { favorites } = useContext(appContext);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Мои закладки</h2>
       <div className={styles.containerContent}>
-        {items.map((item, index) => {
+        {favorites.map((item, index) => {
           return (
             <Card
               title={item.title}
@@ -14,7 +17,7 @@ const Favorites = ({ items = [], onFavorite, onAddToCart }) => {
               img={item.img}
               id={item.id}
               key={index}
-              favorited={false}
+              favorited={true}
               onFavorite={(obj) => {
                 onFavorite(obj);
               }}

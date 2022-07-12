@@ -8,43 +8,43 @@ const HomePage = ({
   onFavorite,
   onAddToCart,
   cartItems,
+  isLoading,
 }) => {
+  const renderItems = () => {
+    const filtredItems = items.filter((item) =>
+      item.title
+        .toString()
+        .toLowerCase()
+        .includes(searchValue.toString().toLowerCase())
+    );
+
+    return (isLoading ? Array(12).fill({}) : filtredItems).map(
+      (item, index) => (
+        <Card
+          loading={isLoading}
+          id={item.id}
+          title={item.title}
+          price={item.price}
+          img={item.img}
+          key={index}
+          onFavorite={(obj) => {
+            onFavorite(obj);
+          }}
+          onPlus={(obj) => {
+            onAddToCart(obj);
+          }}
+        />
+      )
+    );
+  };
+
   return (
     <div className='container'>
       <SearchBlock
         onChangeSearchInput={onChangeSearchInput}
         searchValue={searchValue}
       />
-      <div className='container-content'>
-        {items
-          .filter((item) =>
-            item.title
-              .toString()
-              .toLowerCase()
-              .includes(searchValue.toString().toLowerCase())
-          )
-          .map((item, index) => {
-            return (
-              <Card
-                id={item.id}
-                title={item.title}
-                price={item.price}
-                img={item.img}
-                key={index}
-                favorited={false}
-                added={cartItems.some(
-                  (obj) => Number(obj.id) === Number(item.id)
-                )}
-                onFavorite={(obj) => {
-                  onFavorite(obj);
-                }}
-                onPlus={(obj) => {
-                  onAddToCart(obj);
-                }}
-              />
-            );
-          })}
-      </div>
+      <div className='container-content'>{renderItems()}</div>
     </div>
   );
 };

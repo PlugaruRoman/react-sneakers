@@ -1,5 +1,7 @@
+import ContentLoader from 'react-content-loader';
+import appContext from '../../context';
+import { useContext } from 'react';
 import styles from './Сard.module.scss';
-import React, { useState } from 'react';
 
 const Card = ({
   id,
@@ -8,50 +10,70 @@ const Card = ({
   price,
   onPlus,
   onFavorite,
-  added = false,
-  favorited = false,
+  loading = false,
 }) => {
-  const [isAdded, setIsAdded] = useState(added);
-  const [isLiked, setIsLiked] = useState(favorited);
+  const { isItemLiked } = useContext(appContext);
+  const { isItemAdded } = useContext(appContext);
 
   const addSneakers = () => {
     onPlus({ id, img, title, price });
-    setIsAdded(!isAdded);
   };
 
   const likeSneakers = () => {
     onFavorite({ id, img, title, price });
-    setIsLiked(!isLiked);
   };
 
   return (
     <div className={styles.containerContentCard}>
-      <div onClick={likeSneakers} className={styles.favorite}>
-        <img
-          src={isLiked ? '/img/liked.svg' : '/img/unliked.svg'}
-          alt='unliked'
-        />
-      </div>
-      <img
-        width={140}
-        height={115}
-        src={img}
-        alt='sneakers
-            '
-      />
-      <h5>{title}</h5>
-      <div className={styles.cardInfo}>
+      {loading ? (
+        <ContentLoader
+          speed={2}
+          width={150}
+          height={187}
+          viewBox='0 0 150 240'
+          backgroundColor='#f3f3f3'
+          foregroundColor='#ecebeb'
+        >
+          <rect x='0' y='211' rx='8' ry='8' width='80' height='24' />
+          <rect x='0' y='172' rx='3' ry='3' width='93' height='15' />
+          <rect x='0' y='151' rx='3' ry='3' width='150' height='15' />
+          <rect x='115' y='202' rx='8' ry='8' width='32' height='32' />
+          <rect x='0' y='50' rx='8' ry='8' width='150' height='91' />
+        </ContentLoader>
+      ) : (
         <div>
-          <span>Цена:</span>
-          <p>{price} руб.</p>
-        </div>
-        <div className={styles.plusButton} onClick={addSneakers}>
+          <div onClick={likeSneakers} className={styles.favorite}>
+            <img
+              src={isItemLiked(id) ? '/img/liked.svg' : '/img/unliked.svg'}
+              alt='unliked'
+            />
+          </div>
           <img
-            src={isAdded ? './img/checked.svg' : './img/addsneakers.svg'}
-            alt='addSneakers'
+            width={140}
+            height={115}
+            src={img}
+            alt='sneakers
+            '
           />
+          <h5>{title}</h5>
+          <div className={styles.cardInfo}>
+            <div>
+              <span>Цена:</span>
+              <p>{price} руб.</p>
+            </div>
+            <div className={styles.plusButton} onClick={addSneakers}>
+              <img
+                src={
+                  isItemAdded(id)
+                    ? './img/checked.svg'
+                    : './img/addsneakers.svg'
+                }
+                alt='addSneakers'
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

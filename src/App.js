@@ -105,7 +105,14 @@ function App(props) {
 
   return (
     <appContext.Provider
-      value={{ items, cartItems, favorites, isItemAdded, isItemLiked }}
+      value={{
+        items,
+        cartItems,
+        favorites,
+        isItemAdded,
+        isItemLiked,
+        setCartItems,
+      }}
     >
       <div className='wrapper'>
         {rightSide ? (

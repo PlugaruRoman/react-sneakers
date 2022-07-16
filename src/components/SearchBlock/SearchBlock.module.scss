@@ -1,0 +1,16 @@
+.searchBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .search {
+    margin-right: 70px;
+    height: 45px;
+    border: 1px solid #f3f3f3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    img {
+      margin: 0px 5px;
+    }
+  }
+}

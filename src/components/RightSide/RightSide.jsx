@@ -5,14 +5,17 @@ import appContext from '../../context';
 import CartItem from './CartItem';
 import NullCart from './NullCart';
 import Order from './Order';
+import styles from './RightSide.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const RightSide = ({ removeRightSide, onRemoveItem, items = [] }) => {
+const RightSide = ({ removeRightSide, onRemoveItem, items = [], opened }) => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const { cartItems, setCartItems } = useContext(appContext);
   const [orderId, setOrderId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const sumPrice = cartItems.reduce((sum, obj) => +obj.price + +sum, 0);
 
   const onClickOrder = async () => {
     try {
@@ -38,15 +41,15 @@ const RightSide = ({ removeRightSide, onRemoveItem, items = [] }) => {
   };
 
   return (
-    <div className='overlay'>
-      <div className='section'>
-        <div className='right-side'>
-          <div className='cart-items'>
+    <div className={styles.overlay}>
+      <div className={styles.section}>
+        <div className={styles.rightSide}>
+          <div className={styles.cartItems}>
             <h2>
               Корзина
-              <div onClick={removeRightSide} className='close-cart__menu'>
+              <div onClick={removeRightSide} className={styles.closeCartMenu}>
                 <img
-                  className='close-cart'
+                  className={styles.closeCart}
                   width={32}
                   height={32}
                   src='img/close-cart.svg'
@@ -55,8 +58,8 @@ const RightSide = ({ removeRightSide, onRemoveItem, items = [] }) => {
               </div>
             </h2>
             {items.length > 0 ? (
-              <div className='selected-cart'>
-                <div className='items'>
+              <div className={styles.selectedCart}>
+                <div className={styles.items}>
                   {items.map((obj, index) => (
                     <CartItem
                       key={index}
@@ -68,16 +71,16 @@ const RightSide = ({ removeRightSide, onRemoveItem, items = [] }) => {
                     />
                   ))}
                 </div>
-                <div className='total'>
-                  <div className='total-info'>
+                <div className={styles.total}>
+                  <div className={styles.totalInfo}>
                     <span>Итого:</span>
                     <div></div>
-                    <b>21 498 руб.</b>
+                    <b>{sumPrice} руб.</b>
                   </div>
                   <button
                     disabled={isLoading}
                     onClick={onClickOrder}
-                    className='green-button'
+                    className={styles.greenButton}
                   >
                     Оформить заказ
                     <img src='/img/right-arrow.svg' alt='arrow' />

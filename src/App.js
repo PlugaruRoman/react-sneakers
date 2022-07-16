@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import RightSide from './components/RightSide/RightSide';
 import Favorites from './components/pages/Favorites/Favorites';
 import appContext from './context';
+import Orders from './components/pages/Orders/Orders';
+import styles from './App.module.scss';
 
 function App(props) {
   const [rightSide, setRightSide] = useState(false);
@@ -112,16 +114,17 @@ function App(props) {
         isItemAdded,
         isItemLiked,
         setCartItems,
+        onAddToCart,
+        onFavorite,
       }}
     >
-      <div className='wrapper'>
-        {rightSide ? (
-          <RightSide
-            items={cartItems}
-            removeRightSide={removeRightSide}
-            onRemoveItem={onRemoveItem}
-          />
-        ) : null}
+      <div className={styles.wrapper}>
+        <RightSide
+          items={cartItems}
+          removeRightSide={removeRightSide}
+          onRemoveItem={onRemoveItem}
+        />
+
         <Header onClickCart={addRightSide} />
         <Routes>
           <Route
@@ -135,6 +138,7 @@ function App(props) {
               />
             }
           />
+          <Route path='/orders' element={<Orders />} />
           <Route
             path='/'
             element={

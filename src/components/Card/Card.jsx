@@ -43,10 +43,12 @@ const Card = ({
       ) : (
         <div>
           <div onClick={likeSneakers} className={styles.favorite}>
-            <img
-              src={isItemLiked(id) ? '/img/liked.svg' : '/img/unliked.svg'}
-              alt='unliked'
-            />
+            {onFavorite && (
+              <img
+                src={isItemLiked(id) ? '/img/liked.svg' : '/img/unliked.svg'}
+                alt='unliked'
+              />
+            )}
           </div>
           <img
             width={140}
@@ -62,14 +64,16 @@ const Card = ({
               <p>{price} руб.</p>
             </div>
             <div className={styles.plusButton} onClick={addSneakers}>
-              <img
-                src={
-                  isItemAdded(id)
-                    ? './img/checked.svg'
-                    : './img/addsneakers.svg'
-                }
-                alt='addSneakers'
-              />
+              {onPlus && (
+                <img
+                  src={
+                    isItemAdded(id)
+                      ? './img/checked.svg'
+                      : './img/addsneakers.svg'
+                  }
+                  alt='addSneakers'
+                />
+              )}
             </div>
           </div>
         </div>

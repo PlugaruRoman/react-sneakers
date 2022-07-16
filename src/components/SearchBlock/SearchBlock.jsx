@@ -1,8 +1,10 @@
+import styles from './SearchBlock.module.scss';
+
 const SearchBlock = ({ searchValue, onChangeSearchInput }) => {
   return (
-    <div className='search-block'>
-      <h1 className='title'>Все кроссовки</h1>
-      <div className='search'>
+    <div className={styles.searchBlock}>
+      <h1 className={styles.title}>Все кроссовки</h1>
+      <div className={styles.search}>
         <img width={20} height={20} src='/img/search.svg' alt='search' />
         <input
           value={searchValue}

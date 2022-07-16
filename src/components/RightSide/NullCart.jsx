@@ -1,8 +1,10 @@
+import styles from './NullCart.module.scss';
+
 const NullCart = (props) => {
   return (
-    <div className='null-cart'>
-      <div className='null-cart-items'>
-        <div className='null-img'>
+    <div className={styles.nullCart}>
+      <div className={styles.nullCartItems}>
+        <div className={styles.nullImg}>
           <img
             width={120}
             height={120}
@@ -11,13 +13,13 @@ const NullCart = (props) => {
           />
         </div>
 
-        <div className='null-cart__info'>
-          <h3 className='info-title'>Корзина пустая</h3>
-          <span className='info-text'>
+        <div className={styles.nullCartInfo}>
+          <h3 className={styles.infoTitle}>Корзина пустая</h3>
+          <span className={styles.infoText}>
             Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
           </span>
         </div>
-        <button onClick={props.removeRightSide} className='return-button'>
+        <button onClick={props.removeRightSide} className={styles.returnButton}>
           <img src='/img/left-arrow.svg' alt='arrow' />
           Вернуться назад
         </button>

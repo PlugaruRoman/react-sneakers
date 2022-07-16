@@ -1,5 +1,6 @@
 import SearchBlock from '../SearchBlock/SearchBlock';
 import Card from '../Card/Card';
+import styles from './HomePage.module.scss';
 
 const HomePage = ({
   onChangeSearchInput,
@@ -7,7 +8,6 @@ const HomePage = ({
   items,
   onFavorite,
   onAddToCart,
-  cartItems,
   isLoading,
 }) => {
   const renderItems = () => {
@@ -39,12 +39,12 @@ const HomePage = ({
   };
 
   return (
-    <div className='container'>
+    <div className={styles.container}>
       <SearchBlock
         onChangeSearchInput={onChangeSearchInput}
         searchValue={searchValue}
       />
-      <div className='container-content'>{renderItems()}</div>
+      <div className={styles.containerContent}>{renderItems()}</div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Header = (props) => {
       <Link to={'/'}>
         <div className={styles.headerLeft}>
           <img witdh={40} height={40} src='/img/logo.png' alt='logo' />
-          <div className='column-info'>
+          <div className={styles.columnInfo}>
             <h2>REACT SNEAKERS</h2>
             <span>Магазин лучших кроссовок</span>
           </div>

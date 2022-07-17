@@ -41,7 +41,7 @@ const RightSide = ({ removeRightSide, onRemoveItem, items = [], opened }) => {
   };
 
   return (
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div className={styles.section}>
         <div className={styles.rightSide}>
           <div className={styles.cartItems}>

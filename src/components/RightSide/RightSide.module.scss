@@ -6,6 +6,18 @@
   top: 0px;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+  .rightSide {
+    transform: translateX(0);
+  }
 }
 
 .rightSide {
@@ -20,6 +32,9 @@
   background: #ffffff;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   opacity: 1;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+
   .closeCart {
     cursor: pointer;
     opacity: 0.5;

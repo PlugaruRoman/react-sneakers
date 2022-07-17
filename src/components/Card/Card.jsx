@@ -14,13 +14,14 @@ const Card = ({
 }) => {
   const { isItemLiked } = useContext(appContext);
   const { isItemAdded } = useContext(appContext);
+  const obj = { id, parentId: id, img, title, price };
 
   const addSneakers = () => {
-    onPlus({ id, img, title, price });
+    onPlus(obj);
   };
 
   const likeSneakers = () => {
-    onFavorite({ id, img, title, price });
+    onFavorite(obj);
   };
 
   return (

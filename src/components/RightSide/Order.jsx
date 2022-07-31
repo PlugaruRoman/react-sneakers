@@ -5,7 +5,7 @@ const Order = (props) => {
     <div className={styles.order}>
       <div className={styles.orderItems}>
         <div className={styles.orderImg}>
-          <img width={83} height={120} src='./img/order.png' alt='order' />
+          <img width={83} height={120} src='img/order.png' alt='order' />
         </div>
 
         <div className={styles.orderInfo}>
@@ -15,7 +15,7 @@ const Order = (props) => {
           </span>
         </div>
         <button onClick={props.removeRightSide} className={styles.returnButton}>
-          <img src='/img/left-arrow.svg' alt='arrow' />
+          <img src='img/left-arrow.svg' alt='arrow' />
           Вернуться назад
         </button>
       </div>

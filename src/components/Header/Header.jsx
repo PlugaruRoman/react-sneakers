@@ -10,7 +10,7 @@ const Header = (props) => {
 
   return (
     <header className={styles.header}>
-      <Link to={'/'}>
+      <Link to={'/react-sneakers'}>
         <div className={styles.headerLeft}>
           <img witdh={40} height={40} src='img/logo.png' alt='logo' />
           <div className={styles.columnInfo}>

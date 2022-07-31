@@ -10,7 +10,7 @@ const Header = (props) => {
 
   return (
     <header className={styles.header}>
-      <Link to={'/react-sneakers'}>
+      <Link to={''}>
         <div className={styles.headerLeft}>
           <img witdh={40} height={40} src='img/logo.png' alt='logo' />
           <div className={styles.columnInfo}>
@@ -52,7 +52,7 @@ const Header = (props) => {
           </svg>
           <span>{sumPrice} руб.</span>
         </li>
-        <Link to={'/react-sneakers/favorites'}>
+        <Link to={'favorites'}>
           <li className={styles.navLink}>
             <svg
               width='20'
@@ -69,7 +69,7 @@ const Header = (props) => {
           </li>
         </Link>
 
-        <Link to={'/react-sneakers/orders'}>
+        <Link to={'orders'}>
           <li className={styles.navLink}>
             <svg
               width='20'

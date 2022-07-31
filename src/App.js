@@ -158,7 +158,7 @@ function App(props) {
         <Header onClickCart={addRightSide} />
         <Routes>
           <Route
-            path='https://plugaruroman.github.io//react-sneakers/favorites'
+            path='react-sneakers/favorites'
             element={
               <Favorites
                 items={favorites}
@@ -168,12 +168,9 @@ function App(props) {
               />
             }
           />
+          <Route path='react-sneakers/orders' element={<Orders />} />
           <Route
-            path='https://plugaruroman.github.io/react-sneakers/orders'
-            element={<Orders />}
-          />
-          <Route
-            path='https://plugaruroman.github.io/react-sneakers/'
+            path='react-sneakers/'
             element={
               <HomePage
                 onChangeSearchInput={onChangeSearchInput}

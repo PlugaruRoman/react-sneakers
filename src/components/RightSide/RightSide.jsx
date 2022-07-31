@@ -83,7 +83,7 @@ const RightSide = ({ removeRightSide, onRemoveItem, items = [], opened }) => {
                     className={styles.greenButton}
                   >
                     Оформить заказ
-                    <img src='/img/right-arrow.svg' alt='arrow' />
+                    <img src='img/right-arrow.svg' alt='arrow' />
                   </button>
                 </div>
               </div>

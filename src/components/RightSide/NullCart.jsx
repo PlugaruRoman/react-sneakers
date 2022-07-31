@@ -8,7 +8,7 @@ const NullCart = (props) => {
           <img
             width={120}
             height={120}
-            src='./img/null-cart.png'
+            src='img/null-cart.png'
             alt='null-cart'
           />
         </div>
@@ -20,7 +20,7 @@ const NullCart = (props) => {
           </span>
         </div>
         <button onClick={props.removeRightSide} className={styles.returnButton}>
-          <img src='/img/left-arrow.svg' alt='arrow' />
+          <img src='img/left-arrow.svg' alt='arrow' />
           Вернуться назад
         </button>
       </div>
